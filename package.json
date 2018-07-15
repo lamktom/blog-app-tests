@@ -1,10 +1,11 @@
 {
-  "name": "blog-app-challenge-starter-files",
+  "name": "blog-app-tests",
   "version": "0.0.1",
   "description": "Shopping list app to demo 'the modern classic'",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -15,5 +16,17 @@
     "node",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thinkful-Ed/blog-app-challenge-starter-files.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Thinkful-Ed/blog-app-challenge-starter-files/issues"
+  },
+  "homepage": "https://github.com/Thinkful-Ed/blog-app-challenge-starter-files#readme"
 }

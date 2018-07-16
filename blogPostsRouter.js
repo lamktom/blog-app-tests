@@ -1,17 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+const bodyParser = require('body-parser'); 
+const jsonParser = bodyParser.json();  
+
 const { BlogPosts } = require("./models");
 
-// convenience function for generating lorem text for blog
-// posts we initially add below
-function solution() {
-	return `Get a pet.`; 
-}
-
 // creating a couple of posts for when server loads 
-BlogPosts.create('How to feel less lonely', solution(), 'Jessie Lam');
-BlogPosts.create('How to live a happier life', solution(), 'Tom Lam'); 
+BlogPosts.create('How to feel less lonely', 'Get a pet.', 'Jessie Lam', 'July 15, 2018');
+BlogPosts.create('How to live a happier life', 'Get a pet.', 'Tom Lam', 'July 15, 2018'); 
 
 // add endpoint for GET. It should call `BlogPosts.get()`
 // and return JSON objects of stored blog posts.
@@ -28,7 +25,7 @@ router.get('/', (req, res) => {
 // send a 400 error if the post doesn't contain
 // `title`, `content`, and `author`
 router.post('/', (req, res) => {
-	const requiredFields = ['title', 'content', 'author'];
+	const requiredFields = ['title', 'content', 'author', 'publishDate'];
 	for (let i=0; i < requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if(!(field in req.body)); {
@@ -37,6 +34,8 @@ router.post('/', (req, res) => {
 			return res.status(400).send(message); 
 		}
 	}
+	// const post = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
+	// res.status.(201).json(post); 
 }); 
 
 // add endpoint for PUT requests to update blogposts. it should

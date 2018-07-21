@@ -2,21 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 
 const app = express();
-
-app.use(morgan("common"));
 app.use(express.json());
 
 // you need to import `blogPostsRouter` router and route
 // requests to HTTP requests to `/blog-posts` to `blogPostsRouter`
+const blogPostsRouter = require('./blogPostsRouter');
 
-const blogPostsRouter = require('./blogPostsRouter')
-app.use('/blog-posts', blogPostsRouter); 
+app.use(morgan("common"));
 
 app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + "/views/index.html"); 
-}); 
+// app.get('/', (req, res) => {
+// 	res.sendFile(__dirname + "/views/index.html"); 
+// }); 
 
 app.use("/blog-posts", blogPostsRouter); 
 
